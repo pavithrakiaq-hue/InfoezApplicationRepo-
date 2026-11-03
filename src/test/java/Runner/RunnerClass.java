@@ -15,5 +15,4 @@ import io.cucumber.junit.CucumberOptions;
 		tags = "not @Signup"
 )
 public class RunnerClass{
-	
 }

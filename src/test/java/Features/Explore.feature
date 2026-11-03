@@ -6,4 +6,3 @@ And User select option from Sort by dropdown
 And User select option from Min rating dropdown 
 And User select Verified only checkbox and clicks the result image
 Then The matching result should be displayed on the explore page
-
