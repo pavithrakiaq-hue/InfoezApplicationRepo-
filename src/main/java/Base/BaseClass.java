@@ -46,6 +46,12 @@ public class BaseClass {
 	public static void sendKeys(WebElement element,String name) {
 		element.sendKeys(name);
 	}
+	public static String getAttribute(WebElement element,String name) {
+		return element.getAttribute(name);
+	}
+	public static boolean isEnabled(WebElement element) {
+		return element.isEnabled();
+	}
 	public static void click(WebElement element) {
 		element.click();
 	}
@@ -57,6 +63,9 @@ public class BaseClass {
 	}
 	public static String getCurrentURL() {
 		return driver.getCurrentUrl();
+	}
+	public static void navigateBack() {
+		driver.navigate().back();
 	}
 	public static void close() {
 		if(driver!= null) {

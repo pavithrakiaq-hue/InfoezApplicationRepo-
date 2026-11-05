@@ -4,12 +4,14 @@ import org.junit.Assert;
 
 import Base.BaseClass;
 import Pom.LoginPomClass;
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class LoginStep extends BaseClass{
+	String EmailValueExpected;
+	String PasswordValueExpected;
+	
 	LoginPomClass pm = new LoginPomClass(driver);
 	@Given("User is on the login page")
 	public void user_is_on_the_login_page() {
@@ -19,12 +21,28 @@ public class LoginStep extends BaseClass{
 	public void appropriate_login_heading_should_be_displayed() {
 	    Assert.assertTrue(pm.loginHeading.isDisplayed());
 	}
-	@When("User enters valid {string} and {string}")
-	public void user_enters_and1(String string, String string2) {
+	@When("User enters valid {string}")
+	public void user_enters_valid(String string) {
+		EmailValueExpected = string;
 		sendKeys(pm.email, string);
-		sendKeys(pm.password, string2);
 	}
-	@And("User clicks sign in button")
+
+	@Then("Email should be entered on Email field")
+	public void email_should_be_entered_on_email_field() {
+		String emailValueActual = getAttribute(pm.email,"value");
+		Assert.assertEquals(EmailValueExpected,emailValueActual);
+	}
+	@When("User enter valid {string}")
+	public void user_enter_valid(String string) {
+		PasswordValueExpected = string;
+		sendKeys(pm.password, string);
+	}
+	@Then("Password should be entered on Password field")
+	public void password_should_be_entered_on_password_field() {
+		String passwordActual = getAttribute(pm.password,"value");
+		Assert.assertEquals(PasswordValueExpected,passwordActual);
+	}
+	@When("User clicks sign in button")
 	public void user_clicks_sign_in_button() {
 	    click(pm.signinClick);
 	}
